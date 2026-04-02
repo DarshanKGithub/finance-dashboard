@@ -27,14 +27,14 @@ describe("LoginPanel", () => {
     const onLogin = vi.fn();
     render(<LoginPanel onLogin={onLogin} />);
 
-    fireEvent.change(screen.getByPlaceholderText("Email"), { target: { value: "ADMIN@FINFLOW.COM" } });
+    fireEvent.change(screen.getByPlaceholderText("Email"), { target: { value: "ADMIN@ZORVYN.COM" } });
     fireEvent.change(screen.getByPlaceholderText("Password"), { target: { value: "admin123" } });
     fireEvent.click(screen.getByRole("button", { name: "Login" }));
 
     expect(onLogin).toHaveBeenCalledWith({
       id: "u-admin-1",
-      name: "Ariana Blake",
-      email: "admin@finflow.com",
+      name: "Zorvyn Admin",
+      email: "admin@zorvyn.com",
       role: "admin",
     });
   });

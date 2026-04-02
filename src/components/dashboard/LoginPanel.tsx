@@ -45,7 +45,7 @@ export function LoginPanel({ onLogin }: LoginPanelProps) {
       <main className="mx-auto flex min-h-screen w-full max-w-6xl items-center p-4 sm:p-8">
         <div className="grid w-full gap-6 lg:grid-cols-[1.1fr_1fr]">
           <section className="reveal rounded-3xl border border-white/40 bg-slate-900/90 p-8 text-slate-100 shadow-2xl backdrop-blur">
-            <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">FinFlow Platform</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">Zorvyn Platform</p>
             <h1 className="mt-3 text-4xl font-semibold leading-tight">Control finance operations like a modern SaaS team.</h1>
             <p className="mt-4 max-w-xl text-sm text-slate-300 sm:text-base">
               Sign in as Admin or Viewer to explore role-based permissions, live insights, and transaction analytics.
@@ -53,12 +53,12 @@ export function LoginPanel({ onLogin }: LoginPanelProps) {
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
               <div className="rounded-2xl border border-white/20 bg-white/5 p-4">
                 <p className="text-xs uppercase tracking-wide text-slate-300">Admin Demo</p>
-                <p className="mt-2 text-sm text-slate-100">admin@finflow.com</p>
+                <p className="mt-2 text-sm text-slate-100">admin@zorvyn.com</p>
                 <p className="text-sm text-slate-300">admin123</p>
               </div>
               <div className="rounded-2xl border border-white/20 bg-white/5 p-4">
                 <p className="text-xs uppercase tracking-wide text-slate-300">Viewer Demo</p>
-                <p className="mt-2 text-sm text-slate-100">viewer@finflow.com</p>
+                <p className="mt-2 text-sm text-slate-100">viewer@zorvyn.com</p>
                 <p className="text-sm text-slate-300">viewer123</p>
               </div>
             </div>

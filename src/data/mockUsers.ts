@@ -15,15 +15,15 @@ export const AUTH_STORAGE_KEY = "finance-dashboard-auth-v1";
 export const mockUsers: MockUser[] = [
   {
     id: "u-admin-1",
-    name: "Ariana Blake",
-    email: "admin@finflow.com",
+    name: "Zorvyn Admin",
+    email: "admin@zorvyn.com",
     password: "admin123",
     role: "admin",
   },
   {
     id: "u-viewer-1",
-    name: "Leo Carter",
-    email: "viewer@finflow.com",
+    name: "Darshan Kshetri",
+    email: "viewer@zorvyn.com",
     password: "viewer123",
     role: "viewer",
   },
