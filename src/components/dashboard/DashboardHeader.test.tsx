@@ -1,25 +1,24 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { vi } from "vitest";
 
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
 
 describe("DashboardHeader", () => {
-  it("renders user info and supports role switching", () => {
-    const onRoleChange = vi.fn();
+  it("renders user info and toggles theme", () => {
+    const onThemeToggle = vi.fn();
 
     render(
       <DashboardHeader
-        user={{ id: "u-1", name: "Ariana Blake", email: "admin@finflow.com", role: "admin" }}
+        user={{ id: "u-1", name: "Zorvyn Admin", email: "admin@zorvyn.com", role: "admin" }}
         onLogout={() => undefined}
-        onRoleChange={onRoleChange}
         theme="light"
-        onThemeToggle={() => undefined}
+        onThemeToggle={onThemeToggle}
       />,
     );
 
-    fireEvent.change(screen.getByLabelText("Role switch"), { target: { value: "viewer" } });
+    fireEvent.click(screen.getByRole("button", { name: "Dark Mode" }));
 
-    expect(screen.getByText("Ariana Blake")).toBeInTheDocument();
-    expect(onRoleChange).toHaveBeenCalledWith("viewer");
+    expect(screen.getByText("Zorvyn Admin")).toBeInTheDocument();
+    expect(screen.queryByLabelText("Role switch")).not.toBeInTheDocument();
+    expect(onThemeToggle).toHaveBeenCalled();
   });
 });

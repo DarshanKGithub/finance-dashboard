@@ -137,28 +137,28 @@ export function TransactionsSection({
               component={Paper}
               elevation={0}
               sx={{
-                border: "1px solid #e2e8f0",
+                border: "1px solid var(--table-border)",
                 borderRadius: "16px",
                 overflow: "hidden",
-                backgroundColor: "#fff",
+                backgroundColor: "var(--table-bg)",
               }}
             >
               <Table size="small" stickyHeader aria-label="transactions table">
                 <TableHead>
                   <TableRow>
-                    <TableCell sx={{ fontWeight: 700, color: "#475569", backgroundColor: "#f8fafc" }}>Date</TableCell>
-                    <TableCell sx={{ fontWeight: 700, color: "#475569", backgroundColor: "#f8fafc" }}>Category</TableCell>
-                    <TableCell sx={{ fontWeight: 700, color: "#475569", backgroundColor: "#f8fafc" }}>Type</TableCell>
-                    <TableCell sx={{ fontWeight: 700, color: "#475569", backgroundColor: "#f8fafc" }}>Amount</TableCell>
-                    <TableCell sx={{ fontWeight: 700, color: "#475569", backgroundColor: "#f8fafc" }}>Note</TableCell>
-                    <TableCell align="right" sx={{ fontWeight: 700, color: "#475569", backgroundColor: "#f8fafc" }}>
+                    <TableCell sx={{ fontWeight: 700, color: "var(--table-header-text)", backgroundColor: "var(--table-header-bg)" }}>Date</TableCell>
+                    <TableCell sx={{ fontWeight: 700, color: "var(--table-header-text)", backgroundColor: "var(--table-header-bg)" }}>Category</TableCell>
+                    <TableCell sx={{ fontWeight: 700, color: "var(--table-header-text)", backgroundColor: "var(--table-header-bg)" }}>Type</TableCell>
+                    <TableCell sx={{ fontWeight: 700, color: "var(--table-header-text)", backgroundColor: "var(--table-header-bg)" }}>Amount</TableCell>
+                    <TableCell sx={{ fontWeight: 700, color: "var(--table-header-text)", backgroundColor: "var(--table-header-bg)" }}>Note</TableCell>
+                    <TableCell align="right" sx={{ fontWeight: 700, color: "var(--table-header-text)", backgroundColor: "var(--table-header-bg)" }}>
                       Actions
                     </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {rows.map((item) => (
-                    <TableRow key={item.id} hover sx={{ "& td": { borderColor: "#eef2f7" } }}>
+                    <TableRow key={item.id} hover sx={{ "& td": { borderColor: "var(--table-row-border)", color: "var(--table-row-text)" } }}>
                       <TableCell>{item.date}</TableCell>
                       <TableCell sx={{ fontWeight: 500 }}>{item.category}</TableCell>
                       <TableCell>

@@ -12,7 +12,7 @@ import { SummaryCards } from "@/components/dashboard/SummaryCards";
 import { TransactionFormSection } from "@/components/dashboard/TransactionFormSection";
 import { TransactionsSection } from "@/components/dashboard/TransactionsSection";
 import { emptyForm, seedTransactions, STORAGE_KEY } from "@/data/mockTransactions";
-import { AUTH_STORAGE_KEY, mockUsers } from "@/data/mockUsers";
+import { AUTH_STORAGE_KEY } from "@/data/mockUsers";
 import {
   getInsights,
   getSpendingByCategory,
@@ -21,7 +21,7 @@ import {
   monthLabel,
 } from "@/lib/finance-utils";
 import { fetchMockTransactions } from "@/lib/mock-api";
-import { AuthUser, GroupBy, Role, SortBy, Transaction, TransactionForm, TransactionType } from "@/types/finance";
+import { AuthUser, GroupBy, SortBy, Transaction, TransactionForm, TransactionType } from "@/types/finance";
 
 const THEME_STORAGE_KEY = "finance-dashboard-theme-v1";
 
@@ -208,30 +208,6 @@ export default function DashboardClient() {
     window.localStorage.removeItem(AUTH_STORAGE_KEY);
   }
 
-  function handleRoleChange(nextRole: Role) {
-    if (!authUser || authUser.role === nextRole) {
-      return;
-    }
-
-    const matchedUser = mockUsers.find((user) => user.role === nextRole);
-    const nextUser: AuthUser = matchedUser
-      ? {
-          id: matchedUser.id,
-          name: matchedUser.name,
-          email: matchedUser.email,
-          role: matchedUser.role,
-        }
-      : {
-          ...authUser,
-          role: nextRole,
-        };
-
-    setAuthUser(nextUser);
-    setEditingId(null);
-    setForm(emptyForm);
-    window.localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(nextUser));
-  }
-
   function clearForm() {
     setForm(emptyForm);
     setEditingId(null);
@@ -341,7 +317,7 @@ export default function DashboardClient() {
   }
 
   if (!authUser) {
-    return <LoginPanel onLogin={handleLogin} />;
+    return <LoginPanel onLogin={handleLogin} theme={theme} onThemeToggle={toggleTheme} />;
   }
 
   return (
@@ -358,7 +334,6 @@ export default function DashboardClient() {
               <DashboardHeader
                 user={authUser}
                 onLogout={handleLogout}
-                onRoleChange={handleRoleChange}
                 theme={theme}
                 onThemeToggle={toggleTheme}
               />

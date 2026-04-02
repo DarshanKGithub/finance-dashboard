@@ -3,11 +3,23 @@
 :root {
   --background: #f8fafc;
   --foreground: #0f172a;
+  --table-bg: #ffffff;
+  --table-border: #e2e8f0;
+  --table-header-bg: #f8fafc;
+  --table-header-text: #475569;
+  --table-row-border: #eef2f7;
+  --table-row-text: #0f172a;
 }
 
 :root.dark {
   --background: #020617;
   --foreground: #e2e8f0;
+  --table-bg: rgba(15, 23, 42, 0.92);
+  --table-border: rgba(148, 163, 184, 0.35);
+  --table-header-bg: rgba(30, 41, 59, 0.9);
+  --table-header-text: #e2e8f0;
+  --table-row-border: rgba(148, 163, 184, 0.25);
+  --table-row-text: #e2e8f0;
 }
 
 @theme inline {
@@ -93,6 +105,16 @@ html {
 :root.dark .bg-slate-50,
 :root.dark .bg-slate-100 {
   background-color: rgba(30, 41, 59, 0.8) !important;
+}
+
+:root.dark .all-trans-card {
+  border-color: rgba(148, 163, 184, 0.35) !important;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9)) !important;
+}
+
+:root.dark .all-trans-date,
+:root.dark .all-trans-note {
+  color: #cbd5e1 !important;
 }
 
 @keyframes slide-up {

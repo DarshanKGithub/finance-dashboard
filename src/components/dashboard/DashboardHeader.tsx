@@ -1,16 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { AuthUser, Role } from "@/types/finance";
+import { AuthUser } from "@/types/finance";
 
 type DashboardHeaderProps = {
   user: AuthUser;
   onLogout: () => void;
-  onRoleChange: (role: Role) => void;
   theme: "light" | "dark";
   onThemeToggle: () => void;
 };
 
-export function DashboardHeader({ user, onLogout, onRoleChange, theme, onThemeToggle }: DashboardHeaderProps) {
+export function DashboardHeader({ user, onLogout, theme, onThemeToggle }: DashboardHeaderProps) {
   return (
     <Card className="reveal border-white/40 bg-white/80 backdrop-blur-md">
       <CardContent className="flex flex-col gap-5 p-5 sm:p-6 lg:flex-row lg:items-center lg:justify-between">
@@ -30,18 +29,6 @@ export function DashboardHeader({ user, onLogout, onRoleChange, theme, onThemeTo
           <span className="rounded-full bg-cyan-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-cyan-700">
             {user.role}
           </span>
-          <label className="flex items-center gap-2 text-xs font-semibold text-slate-600">
-            <span>Role</span>
-            <select
-              aria-label="Role switch"
-              className="rounded-lg border border-slate-300 bg-white px-2 py-1 text-xs text-slate-700"
-              value={user.role}
-              onChange={(event) => onRoleChange(event.target.value as Role)}
-            >
-              <option value="viewer">Viewer</option>
-              <option value="admin">Admin</option>
-            </select>
-          </label>
           <Button variant="outline" onClick={onThemeToggle}>
             {theme === "dark" ? "Light Mode" : "Dark Mode"}
           </Button>

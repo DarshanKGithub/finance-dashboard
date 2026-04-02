@@ -9,9 +9,11 @@ import { mockUsers, type AuthUser } from "@/data/mockUsers";
 
 type LoginPanelProps = {
   onLogin: (user: AuthUser) => void;
+  theme: "light" | "dark";
+  onThemeToggle: () => void;
 };
 
-export function LoginPanel({ onLogin }: LoginPanelProps) {
+export function LoginPanel({ onLogin, theme, onThemeToggle }: LoginPanelProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -66,8 +68,15 @@ export function LoginPanel({ onLogin }: LoginPanelProps) {
 
           <Card className="reveal border-white/30 bg-white/85 shadow-xl backdrop-blur [animation-delay:140ms]">
             <CardContent className="p-6 sm:p-8">
-              <h2 className="text-2xl font-semibold text-slate-900">Sign In</h2>
-              <p className="mt-1 text-sm text-slate-600">Access your dashboard workspace</p>
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <h2 className="text-2xl font-semibold text-slate-900">Sign In</h2>
+                  <p className="mt-1 text-sm text-slate-600">Access your dashboard workspace</p>
+                </div>
+                <Button type="button" variant="outline" onClick={onThemeToggle}>
+                  {theme === "dark" ? "Light Mode" : "Dark Mode"}
+                </Button>
+              </div>
 
               <form onSubmit={handleLogin} className="mt-6 space-y-3">
                 <Input

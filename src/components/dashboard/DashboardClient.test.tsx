@@ -14,11 +14,11 @@ describe("DashboardClient", () => {
     window.localStorage.clear();
   });
 
-  it("supports admin login and visible role switching", async () => {
+  it("supports admin login and shows theme toggle", async () => {
     render(<DashboardClient />);
 
     fireEvent.change(await screen.findByPlaceholderText("Email"), {
-      target: { value: "admin@finflow.com" },
+      target: { value: "admin@zorvyn.com" },
     });
     fireEvent.change(screen.getByPlaceholderText("Password"), {
       target: { value: "admin123" },
@@ -26,20 +26,15 @@ describe("DashboardClient", () => {
     fireEvent.click(screen.getByRole("button", { name: "Login" }));
 
     expect(await screen.findByText("Fintech SaaS Command Center")).toBeInTheDocument();
-
-    const roleSwitch = screen.getByLabelText("Role switch");
-    expect(roleSwitch).toHaveValue("admin");
-
-    fireEvent.change(roleSwitch, { target: { value: "viewer" } });
-
-    expect(await screen.findByText(/Viewer mode is read-only/i)).toBeInTheDocument();
+    expect(screen.queryByLabelText("Role switch")).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Dark Mode" })).toBeInTheDocument();
   });
 
   it("adds a transaction as admin and persists to localStorage", async () => {
     render(<DashboardClient />);
 
     fireEvent.change(await screen.findByPlaceholderText("Email"), {
-      target: { value: "admin@finflow.com" },
+      target: { value: "admin@zorvyn.com" },
     });
     fireEvent.change(screen.getByPlaceholderText("Password"), {
       target: { value: "admin123" },
@@ -67,7 +62,7 @@ describe("DashboardClient", () => {
   it("hydrates auth and transactions from localStorage", async () => {
     window.localStorage.setItem(
       AUTH_STORAGE_KEY,
-      JSON.stringify({ id: "u-admin-1", name: "Ariana Blake", email: "admin@finflow.com", role: "admin" }),
+      JSON.stringify({ id: "u-admin-1", name: "Zorvyn Admin", email: "admin@zorvyn.com", role: "admin" }),
     );
     window.localStorage.setItem(
       STORAGE_KEY,
@@ -93,7 +88,7 @@ describe("DashboardClient", () => {
     render(<DashboardClient />);
 
     fireEvent.change(await screen.findByPlaceholderText("Email"), {
-      target: { value: "viewer@finflow.com" },
+      target: { value: "viewer@zorvyn.com" },
     });
     fireEvent.change(screen.getByPlaceholderText("Password"), {
       target: { value: "viewer123" },
@@ -109,7 +104,7 @@ describe("DashboardClient", () => {
   it("falls back to seed transactions when stored data is malformed", async () => {
     window.localStorage.setItem(
       AUTH_STORAGE_KEY,
-      JSON.stringify({ id: "u-admin-1", name: "Ariana Blake", email: "admin@finflow.com", role: "admin" }),
+      JSON.stringify({ id: "u-admin-1", name: "Zorvyn Admin", email: "admin@zorvyn.com", role: "admin" }),
     );
     window.localStorage.setItem(STORAGE_KEY, "{invalid-json");
 
@@ -123,7 +118,7 @@ describe("DashboardClient", () => {
     render(<DashboardClient />);
 
     fireEvent.change(await screen.findByPlaceholderText("Email"), {
-      target: { value: "admin@finflow.com" },
+      target: { value: "admin@zorvyn.com" },
     });
     fireEvent.change(screen.getByPlaceholderText("Password"), {
       target: { value: "admin123" },
@@ -141,7 +136,7 @@ describe("DashboardClient", () => {
     render(<DashboardClient />);
 
     fireEvent.change(await screen.findByPlaceholderText("Email"), {
-      target: { value: "admin@finflow.com" },
+      target: { value: "admin@zorvyn.com" },
     });
     fireEvent.change(screen.getByPlaceholderText("Password"), {
       target: { value: "admin123" },
@@ -162,7 +157,7 @@ describe("DashboardClient", () => {
     render(<DashboardClient />);
 
     fireEvent.change(await screen.findByPlaceholderText("Email"), {
-      target: { value: "viewer@finflow.com" },
+      target: { value: "viewer@zorvyn.com" },
     });
     fireEvent.change(screen.getByPlaceholderText("Password"), {
       target: { value: "viewer123" },

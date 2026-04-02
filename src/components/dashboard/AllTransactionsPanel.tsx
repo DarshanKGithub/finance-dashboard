@@ -25,18 +25,18 @@ export function AllTransactionsPanel({ transactions }: AllTransactionsPanelProps
           {transactions.map((item) => (
             <article
               key={item.id}
-              className="rounded-2xl border border-slate-200 bg-gradient-to-br from-white to-slate-50 p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+              className="all-trans-card rounded-2xl border border-slate-200 bg-gradient-to-br from-white to-slate-50 p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
             >
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <p className="text-sm font-semibold text-slate-900">{item.category}</p>
-                  <p className="mt-1 text-xs text-slate-500">{item.date}</p>
+                  <p className="all-trans-date mt-1 text-xs text-slate-500">{item.date}</p>
                 </div>
                 <Badge variant={item.type === "income" ? "income" : "expense"}>{item.type}</Badge>
               </div>
 
               <p className="mt-4 text-2xl font-semibold text-slate-900">{currency.format(item.amount)}</p>
-              <p className="mt-2 text-sm text-slate-600">{item.note || "No note provided"}</p>
+              <p className="all-trans-note mt-2 text-sm text-slate-600">{item.note || "No note provided"}</p>
             </article>
           ))}
         </div>
