@@ -40,9 +40,10 @@ Open http://localhost:3000
 - Login with demo credentials from mock users.
 - Auth state is saved in localStorage.
 
-2. Visible Role Switch
-- Role switch is available in dashboard header.
-- Switch between Viewer and Admin instantly.
+2. Role-Based UI Behavior
+- Role is determined by the account used at login.
+- Admin can add/edit/delete transactions.
+- Viewer stays read-only.
 
 3. Dashboard Overview
 - Summary cards: Balance, Income, Expenses.
@@ -78,11 +79,40 @@ Open http://localhost:3000
 ## Demo Credentials
 
 - Admin
-	- Email: admin@finflow.com
+	- Email: admin@zorvyn.com
 	- Password: admin123
 - Viewer
-	- Email: viewer@finflow.com
+	- Email: viewer@zorvyn.com
 	- Password: viewer123
+
+## Login Credentials Analysis
+
+This project uses frontend-only mock credentials from src/data/mockUsers.ts.
+
+Available accounts:
+- Admin account
+	- id: u-admin-1
+	- name: Zorvyn Admin
+	- email: admin@zorvyn.com
+	- password: admin123
+	- role: admin
+- Viewer account
+	- id: u-viewer-1
+	- name: Darshan Kshetri
+	- email: viewer@zorvyn.com
+	- password: viewer123
+	- role: viewer
+
+Validation behavior:
+- Email matching is case-insensitive.
+- Password matching is exact.
+- On success, password is not stored in auth state.
+- On failure, the UI shows an invalid credentials error.
+
+Persistence behavior:
+- Successful login stores auth user (without password) in localStorage key finance-dashboard-auth-v1.
+- Logout clears this auth key.
+- Reload restores session from this key if data is valid.
 
 ## Testing
 
